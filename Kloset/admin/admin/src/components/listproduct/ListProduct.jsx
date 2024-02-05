@@ -6,7 +6,7 @@ const ListProduct = () => {
   const [allProducts, setAllProducts] = useState([]);
 
   const fetchInfo = async () => {
-    await fetch("https://kloser-server2.onrender.com/allproducts", {
+    await fetch("https://kloset-server.onrender.com/allproducts", {
       mode: "cors",
     })
       .then((res) => res.json())
@@ -21,7 +21,7 @@ const ListProduct = () => {
   }, []);
 
   const removeProduct = async (id) => {
-    await fetch("https://kloser-server2.onrender.com/removeproduct", {
+    await fetch("https://kloset-server.onrender.com/removeproduct", {
       method: "POST",
       headers: {
         Accept: "application/json",
