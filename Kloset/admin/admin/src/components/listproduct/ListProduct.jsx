@@ -14,6 +14,7 @@ const ListProduct = () => {
   };
   useEffect(() => {
     fetchInfo();
+    console.log("on list product ");
   }, []);
 
   const removeProduct = async (id) => {
