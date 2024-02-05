@@ -220,6 +220,7 @@ app.post("/login", async (req, res) => {
   let userlogin = await Users.findOne({ email });
 
   if (!userlogin) {
+    console.log("user is not availabe");
     return res.status(401).json({ error: "Authentication failed" });
   }
   console.log("user is present");
