@@ -2,6 +2,8 @@ import React from "react";
 import "./navbar.css";
 import nav_logo from "../../assets/nav-logo.svg";
 import nav_profile from "../../assets/nav-profile.svg";
+import logo from "../../assets/logo.png";
+
 const Navbar = () => {
   return (
     <div className="navbar">
