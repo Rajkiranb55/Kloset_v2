@@ -20,41 +20,35 @@ const AddProduct = () => {
     });
   };
   const addProduct = async () => {
-    console.log(productDetails);
     let ressponseData;
     let product = productDetails;
 
     let formData = new FormData();
-    formData.append("product", image);
+    formData.append("file", image);
+    formData.append("upload_preset", "shgjwcgd");
+    formData.append("cloud_name", "dvp8s6mdm");
 
-    await fetch("http://localhost:4000/upload", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-      },
+    await fetch("https://api-ap.cloudinary.com/v1_1/dvp8s6mdm/image/upload", {
+      method: "post",
       body: formData,
     })
       .then((resp) => resp.json())
-      .then((data) => (ressponseData = data));
+      .then((data) => (product.image = data.url))
+      .catch((err) => console.log(err));
 
-    if (ressponseData.success) {
-      product.image = ressponseData.image_url;
-      console.log(product);
-      await fetch("http://localhost:4000/addproduct", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(product),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          data.success
-            ? alert("product added")
-            : alert("failed to add product");
-        });
-    }
+    console.log(product);
+    await fetch("https://kloset-server.onrender.com/addproduct", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        data.success ? alert("product added") : alert("failed to add product");
+      });
   };
 
   return (

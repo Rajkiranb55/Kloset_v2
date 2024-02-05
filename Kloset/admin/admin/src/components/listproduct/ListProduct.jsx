@@ -6,7 +6,9 @@ const ListProduct = () => {
   const [allProducts, setAllProducts] = useState([]);
 
   const fetchInfo = async () => {
-    await fetch("https://kloser-server2.onrender.com/allproducts")
+    await fetch("https://kloser-server2.onrender.com/allproducts", {
+      mode: "cors",
+    })
       .then((res) => res.json())
       .then((data) => {
         setAllProducts(data);
