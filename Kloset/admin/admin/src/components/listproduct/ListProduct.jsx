@@ -10,7 +10,8 @@ const ListProduct = () => {
       .then((res) => res.json())
       .then((data) => {
         setAllProducts(data);
-      });
+      })
+      .catch((err) => console.log(err));
   };
   useEffect(() => {
     fetchInfo();
