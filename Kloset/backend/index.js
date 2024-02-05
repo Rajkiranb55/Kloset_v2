@@ -215,19 +215,21 @@ app.post("/signup", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   let { email, password } = req.body;
+  console.log("trying to login with", email);
 
   let userlogin = await Users.findOne({ email });
 
   if (!userlogin) {
     return res.status(401).json({ error: "Authentication failed" });
   }
+  console.log("user is present");
   const passCompare = password === userlogin.password;
   if (!passCompare) {
     return res.status(401).json({ error: "Authentication failed" });
   }
-
+  console.log("password is wrong");
   const token = jwt.sign({ userId: userlogin._id }, "rkb2345fgvvwlopandkd");
-
+  console.log("almost about to login");
   res.json({ success: true, token });
 });
 
