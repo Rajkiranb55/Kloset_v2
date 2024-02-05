@@ -21,6 +21,7 @@ const ListProduct = () => {
   }, []);
 
   const removeProduct = async (id) => {
+    console.log("waiting to remove");
     await fetch("https://kloset-server.onrender.com/removeproduct", {
       method: "POST",
       headers: {
